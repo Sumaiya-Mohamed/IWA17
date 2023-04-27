@@ -15,6 +15,7 @@ const MONTHS = [
   
   const getDaysInMonth = (date) => new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   
+  // Only change the code below this line
   const createArray = (length) => {
     const result = [];
   
@@ -59,12 +60,13 @@ const MONTHS = [
   
   const addCell = (existing, classString, value) => {
     return /* html */ `
-      <td class="${classString}">
+      <td class="${classString}"  style="${classString.includes('table__cell_today') ? 'color: blue;' : ''}"> 
         ${value}
       </td>
       ${existing}
     `;
   };
+  //The style code makes the date number appear in blue.
   
   const createHtml = (data) => {
     let result = '';
@@ -80,7 +82,7 @@ const MONTHS = [
         const isWeekend = dayOfWeek === 1 || dayOfWeek === 7;
         const isAlternate = weekData.week % 2 !== 0;
   
-        if (today) classString += ' table__cell_today';
+        if (today) classString += ' table__cell_today table__cell_today-blue'; 
         if (isWeekend) classString += ' table__cell_weekend';
         if (isAlternate) classString += ' table__cell_alternate';
   
@@ -93,6 +95,8 @@ const MONTHS = [
     return result;
   };
   
+  
+  // only change the code above
   const current = new Date();
   document.querySelector('[data-title]').innerText = `${MONTHS[current.getMonth()]} ${current.getFullYear()}`;
   
